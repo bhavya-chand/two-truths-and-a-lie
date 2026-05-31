@@ -6,7 +6,6 @@ A real time multiplayer game of the classic two truths and a lie.
 - Room creation and joining
 - Host-controlled game flow
 - Automatic reconnection handling
-- Host migration protection
 - Room cleanup and expiry system
 - Persistent player identity using localStorage
 
