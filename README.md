@@ -10,25 +10,45 @@ Consists of a name box for the user to enter their name in and an option to eith
 
 
 #### Waiting Room 
+![Waiting Room](image-1.png)
+First an authentication is run. 
+AUTH RULES:
+    1.if room unactive and player not in:give them new id, update db and let them in
+    2.if room inactive and player in: let them in
+    3.if room active and player not in:block them
+    4.if room active and player in:let them in
 
-## Features
-- Feature 1
-- Feature 2
+if authenticated, user is allowed to establish a socket connection and officially enter the waiting room. 
+
+#### Game Room 
+![Game Room](image-2.png)
+First an authentication is run. 
+AUTH RULES:
+    if room inactive and player not in:block 
+    if room inactive and player in:block
+    if room active and player not in:block
+    if room active and player in: LET THEM ENTER 
+
+and then the game begins 
+
+
+## Unique Architectural choices critical to the game 
+- Reconnection logic in waiting room: If a player accidentally leaves the waiting room due to any reason(example: page refresh), new socket connection is established. On the moment of leaving, player is immediately removed from UI and a count down of permanent removal of their playerId is issued to execute in 30 seconds. If they re join within 30 seconds, the countdown is discarded and things continue smoothly. 
+If the player happened to be a host, everyone gets a warning that if the host doesn't rejoin in 30 seconds, the room will be deleted. 
+
+- Reconnection logic in game room: If a player accidentally leaves the game room due to any reason(example: page refresh), new socket connection is established. On the moment of leaving, player is kept UI.If the player happened to be a host, everyone gets a warning that if the host doesn't rejoin in 30 seconds, the room will be deleted. 
+
+- Host Controls: Starting the game, moving onto the next question, are all powers that lie with the host. 
 
 ## Tech Stack
 - Node.js
 - Express
 - Socket.IO
+- MongoDB
 
 ## Installation
-npm install
-npm start
-
-## Usage
-How to use it.
-
-## Screenshots
-(optional)
-
-## Future Improvements
-Things you would add later.
+npm install express 
+npm install mongodb 
+npm install cors 
+npm install socket.io
+node index 
