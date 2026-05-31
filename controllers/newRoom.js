@@ -244,6 +244,14 @@ async function handleCreateRoom(req,res){
         question:0,
         active:0
     });
+    //game should not take more than 20 minutes. its 5 questions for god's sake
+    setTimeout(async()=>{
+        try{
+            await roomModel.deleteOne({roomId:roomId});
+        }catch(err){
+            return;
+        }
+    },20 * 60 * 1000)
     return res.json({roomId:roomId,playerId:playerId});
 }
 

@@ -13,10 +13,10 @@ Consists of a name box for the user to enter their name in and an option to eith
 ![Waiting Room](image-1.png)
 First an authentication is run. 
 AUTH RULES:
-    1.if room unactive and player not in:give them new id, update db and let them in
-    2.if room inactive and player in: let them in
-    3.if room active and player not in:block them
-    4.if room active and player in:let them in
+- 1.if room unactive and player not in:give them new id, update db and let them in
+- 2.if room inactive and player in: let them in
+- 3.if room active and player not in:block them
+- 4.if room active and player in:let them in
 
 if authenticated, user is allowed to establish a socket connection and officially enter the waiting room. 
 
@@ -24,10 +24,10 @@ if authenticated, user is allowed to establish a socket connection and officiall
 ![Game Room](image-2.png)
 First an authentication is run. 
 AUTH RULES:
-    if room inactive and player not in:block 
-    if room inactive and player in:block
-    if room active and player not in:block
-    if room active and player in: LET THEM ENTER 
+- 1.if room inactive and player not in:block 
+- 2.if room inactive and player in:block
+- 3.if room active and player not in:block
+- 4.if room active and player in: LET THEM ENTER 
 
 and then the game begins 
 
@@ -39,6 +39,8 @@ If the player happened to be a host, everyone gets a warning that if the host do
 - Reconnection logic in game room: If a player accidentally leaves the game room due to any reason(example: page refresh), new socket connection is established. On the moment of leaving, player is kept UI.If the player happened to be a host, everyone gets a warning that if the host doesn't rejoin in 30 seconds, the room will be deleted. 
 
 - Host Controls: Starting the game, moving onto the next question, are all powers that lie with the host. 
+
+- Room Clean Up: When a room is created, it is given a life period of twenty minutes(reasonable for a 5 question game). If the game ends successfully(not abandoned), the room is deleted sixty seconds from ending. 
 
 ## Tech Stack
 - Node.js
