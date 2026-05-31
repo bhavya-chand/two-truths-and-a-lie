@@ -1,0 +1,540 @@
+/* ------------------------------------------------------------------ */
+/* Design tokens                                                      */
+/* ------------------------------------------------------------------ */
+
+:root {
+  --color-white: #ffffff;
+  --color-bg: #2db86a;
+  --color-bg-deep: #1f8f52;
+  --color-bg-elevated: #e8f5a3;
+  --color-surface: #edf7b8;
+  --color-border: #b8d96a;
+  --color-border-strong: #8fbf3a;
+  --color-text: #1a2e1a;
+  --color-text-muted: #2d4a2d;
+  --color-text-subtle: #4a6644;
+  --color-primary: #ffe566;
+  --color-primary-hover: #f5d045;
+  --color-primary-active: #e6b800;
+  --color-yellow: #ffe566;
+  --color-yellow-pale: #fff9c4;
+  --color-yellow-deep: #e6b800;
+  --color-green: #2db86a;
+  --color-green-deep: #1a7a42;
+  --color-green-pale: #c8ecc4;
+  --color-lime: #d4ed72;
+  --color-shadow: rgba(26, 46, 26, 0.18);
+
+  --font-sans: system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, monospace;
+
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+
+  --shadow-sm: 0 2px 4px var(--color-shadow);
+  --shadow-md: 0 6px 16px var(--color-shadow);
+  --max-width: 40rem;
+  --max-width-wide: 56rem;
+}
+
+/* ------------------------------------------------------------------ */
+/* Base                                                               */
+/* ------------------------------------------------------------------ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  background-image: linear-gradient(
+    180deg,
+    #45c975 0%,
+    var(--color-bg) 45%,
+    var(--color-bg-deep) 100%
+  );
+  padding: var(--space-xl) var(--space-md);
+}
+
+/* ------------------------------------------------------------------ */
+/* Shared components                                                  */
+/* ------------------------------------------------------------------ */
+
+label {
+  display: block;
+  margin-bottom: var(--space-xs);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+input[type="text"] {
+  width: 100%;
+  max-width: 100%;
+  padding: 0.625rem 0.875rem;
+  border: 2px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-yellow-pale);
+  color: var(--color-text);
+  font-size: 1rem;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+input[type="text"]::placeholder {
+  color: var(--color-text-subtle);
+}
+
+input[type="text"]:focus {
+  outline: none;
+  border-color: var(--color-yellow-deep);
+  box-shadow: 0 0 0 3px rgba(255, 229, 102, 0.55);
+}
+
+button {
+  padding: 0.625rem 1.25rem;
+  border: 2px solid var(--color-yellow-deep);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-primary);
+  color: var(--color-text);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    transform 0.1s ease,
+    box-shadow 0.15s ease;
+  box-shadow: var(--shadow-sm);
+}
+
+button:hover {
+  background-color: var(--color-primary-hover);
+  border-color: var(--color-primary-active);
+  box-shadow: var(--shadow-md);
+}
+
+button:active {
+  background-color: var(--color-primary-active);
+  transform: translateY(2px);
+  box-shadow: none;
+}
+
+button:focus-visible {
+  outline: 2px solid var(--color-text);
+  outline-offset: 2px;
+}
+
+/* ------------------------------------------------------------------ */
+/* Landing page                                                       */
+/* ------------------------------------------------------------------ */
+
+body:has(#name) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-lg);
+  max-width: var(--max-width);
+  margin-inline: auto;
+}
+
+body:has(#name)::before {
+  content: "Two Truths and a Lie";
+  display: block;
+  width: 100%;
+  margin-bottom: var(--space-sm);
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--color-yellow-pale);
+  text-align: center;
+  text-shadow: 0 2px 0 var(--color-green-deep);
+}
+
+body:has(#name) > div {
+  width: 100%;
+  margin: 0;
+  padding: var(--space-lg);
+  background-color: var(--color-surface);
+  border: 2px solid var(--color-border-strong);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+body:has(#name) > div:first-of-type {
+  border-top: 4px solid var(--color-yellow);
+}
+
+body:has(#name) > div:last-of-type {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+body:has(#name) #name {
+  margin-top: var(--space-xs);
+}
+
+body:has(#name) #new-room {
+  flex: 1 1 100%;
+  width: 100%;
+  padding: var(--space-md);
+  font-size: 1rem;
+}
+
+body:has(#name) #join-room {
+  flex: 1 1 8rem;
+  min-width: 8rem;
+}
+
+body:has(#name) #join-room-button {
+  flex: 0 0 auto;
+}
+
+@media (min-width: 32rem) {
+  body:has(#name) > div:last-of-type #new-room {
+    flex: 1 1 auto;
+    width: auto;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Waiting room                                                       */
+/* ------------------------------------------------------------------ */
+
+body:has(#start-button) {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto auto auto;
+  gap: var(--space-lg);
+  max-width: var(--max-width-wide);
+  margin-inline: auto;
+  align-content: start;
+}
+
+body:has(#start-button)::before {
+  content: "Waiting room";
+  grid-row: 1;
+  grid-column: 1 / -1;
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--color-yellow-pale);
+  text-shadow: 0 2px 0 var(--color-green-deep);
+  padding-bottom: var(--space-sm);
+  border-bottom: 3px solid var(--color-yellow);
+}
+
+#start-button {
+  grid-row: 2;
+  grid-column: 1 / -1;
+  width: 100%;
+  padding: var(--space-md) var(--space-lg);
+  font-size: 1.125rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  background: linear-gradient(180deg, var(--color-yellow), var(--color-primary-hover));
+  border-color: var(--color-yellow-deep);
+  color: var(--color-text);
+}
+
+#start-button:hover {
+  background: linear-gradient(180deg, var(--color-primary-hover), var(--color-yellow-deep));
+  border-color: var(--color-green-deep);
+}
+
+#room-id {
+  grid-row: 3;
+  justify-self: start;
+  align-self: start;
+  width: fit-content;
+  max-width: 100%;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-xs) var(--space-md);
+  background-color: var(--color-yellow-pale);
+  border: 2px dashed var(--color-yellow-deep);
+  border-radius: var(--radius-md);
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--color-text);
+}
+
+#room-id:empty::after {
+  content: "—";
+  color: var(--color-text-subtle);
+}
+
+#room-id:not(:empty)::before {
+  content: "Room";
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-green-deep);
+}
+
+#players-list {
+  grid-row: 4;
+  align-self: start;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--space-sm);
+  min-height: 4rem;
+  padding: var(--space-lg);
+  background-color: var(--color-surface);
+  border: 2px solid var(--color-border-strong);
+  border-left: 5px solid var(--color-yellow);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+#players-list:empty::before {
+  content: "No players yet";
+  align-self: center;
+  text-align: center;
+  font-size: 0.9375rem;
+  color: var(--color-text-subtle);
+}
+
+#players-list > div {
+  width: 100%;
+  padding: var(--space-sm) var(--space-md);
+  background-color: var(--color-bg-elevated);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  text-align: left;
+  color: var(--color-text);
+}
+
+#players-list > div:nth-child(odd) {
+  background-color: var(--color-green-pale);
+  border-color: var(--color-green);
+}
+
+#players-list > div:nth-child(even) {
+  background-color: var(--color-yellow-pale);
+  border-color: var(--color-yellow-deep);
+}
+
+/* ------------------------------------------------------------------ */
+/* Game room                                                          */
+/* ------------------------------------------------------------------ */
+
+body:has(#questions) {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "header"
+    "questions"
+    "actions"
+    "scoreboard";
+  gap: var(--space-lg);
+  max-width: var(--max-width-wide);
+  margin-inline: auto;
+  align-content: start;
+}
+
+body:has(#questions)::before {
+  content: "Spot the lie";
+  grid-area: header;
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--color-yellow-pale);
+  text-shadow: 0 2px 0 var(--color-green-deep);
+  padding-bottom: var(--space-sm);
+  border-bottom: 3px solid var(--color-yellow);
+}
+
+#questions {
+  grid-area: questions;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  padding: var(--space-lg);
+  background-color: var(--color-surface);
+  border: 2px solid var(--color-border-strong);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+#questions:empty::after {
+  content: "Loading question…";
+  padding: var(--space-xl);
+  text-align: center;
+  color: var(--color-text-subtle);
+  font-style: italic;
+}
+
+#option1,
+#option2,
+#option3 {
+  width: 100%;
+  text-align: left;
+  padding: var(--space-md) var(--space-lg);
+  background-color: var(--color-bg-elevated);
+  color: var(--color-text);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-weight: 500;
+  line-height: 1.5;
+  box-shadow: var(--shadow-sm);
+}
+
+#option1:hover,
+#option2:hover,
+#option3:hover {
+  background-color: var(--color-yellow-pale);
+  border-color: var(--color-yellow-deep);
+}
+
+#option1:active,
+#option2:active,
+#option3:active {
+  background-color: var(--color-yellow);
+}
+
+#next {
+  grid-area: actions;
+  justify-self: start;
+  min-width: 8rem;
+  padding: var(--space-sm) var(--space-xl);
+  text-transform: capitalize;
+  border-radius: var(--radius-md);
+}
+
+#scoreboard {
+  grid-area: scoreboard;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  padding: var(--space-lg);
+  background-color: var(--color-surface);
+  border: 2px solid var(--color-border-strong);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+#scoreboard:empty::before {
+  content: "Scoreboard";
+  display: block;
+  margin-bottom: var(--space-sm);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-green-deep);
+}
+
+#scoreboard:empty::after {
+  content: "Scores will appear here";
+  font-size: 0.9375rem;
+  color: var(--color-text-subtle);
+}
+
+#scoreboard:not(:empty)::before {
+  content: "Scoreboard";
+  display: block;
+  margin-bottom: var(--space-xs);
+  padding-bottom: var(--space-sm);
+  border-bottom: 2px solid var(--color-border);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-green-deep);
+}
+
+#scoreboard .player {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-sm) var(--space-md);
+  background-color: var(--color-bg-elevated);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-sm);
+}
+
+#scoreboard .player > div:first-child {
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+#scoreboard .player > div:last-child {
+  min-width: 2rem;
+  padding: var(--space-xs) var(--space-sm);
+  background: linear-gradient(180deg, var(--color-yellow), var(--color-yellow-deep));
+  color: var(--color-text);
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+  font-weight: 800;
+  text-align: center;
+  border: 2px solid var(--color-green-deep);
+}
+
+@media (min-width: 48rem) {
+  body:has(#questions) {
+    grid-template-columns: 1fr 16rem;
+    grid-template-areas:
+      "header header"
+      "questions scoreboard"
+      "actions scoreboard";
+    align-items: start;
+  }
+
+  #scoreboard {
+    position: sticky;
+    top: var(--space-xl);
+    max-height: calc(100vh - var(--space-2xl) * 2);
+    overflow-y: auto;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Error page (minimal — no stylesheet link in HTML)                  */
+/* ------------------------------------------------------------------ */
+
+body:not(:has(#name)):not(:has(#start-button)):not(:has(#questions)) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-weight: 600;
+  color: var(--color-yellow-pale);
+}
